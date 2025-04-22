@@ -18,9 +18,11 @@ export default async function RootLayout({
 }>) {
   // Fetch config data
   const lang = 'en';
+  console.log("NEXT_PUBLIC_SERVER_PATH from layout--->", process.env.NEXT_PUBLIC_SERVER_PATH)
+  
   const configs = {
     appConfig: {
-      url: '',
+      url: process.env.NEXT_PUBLIC_SERVER_PATH,
       preferences: {},
       appProperties: {},
     },
@@ -30,7 +32,6 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <head>
-        <script src="/runtime-config.js"></script>
         <link
           rel="stylesheet"
           href={`/themes/${themes.activeTheme}/style.css`}

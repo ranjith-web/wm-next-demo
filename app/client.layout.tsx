@@ -177,33 +177,17 @@ const AppConfigWrapper = ({
 };
 
 export const ClientLayout = ({ children, configs }: ClientLayoutProps) => {
-  const [appConfigurations, setAppConfigurations] = useState(configs);
-  const [loadClient, setLoadClient] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.__RUNTIME_CONFIG__) {
-      setAppConfigurations({
-        ...appConfigurations,
-        appConfig: {
-          ...appConfigurations.appConfig,
-          url: window.__RUNTIME_CONFIG__.NEXT_PUBLIC_SERVER_PATH,
-        },
-      });
-      setLoadClient(true);
-      router.push("/Main");
-    }
+    router.push("/Main");
   }, []);
-
-  if (!loadClient) {
-    return null;
-  }
 
   return (
     <ReduxProvider>
       <WmThemeProvider>
         <ToastProvider>
-          <AppConfigWrapper configs={appConfigurations}>
-            <SecurityInitializer baseURL={appConfigurations.appConfig.url}>
+          <AppConfigWrapper configs={configs}>
+            <SecurityInitializer baseURL={configs.appConfig.url}>
               <ProtectedRoute>{children}</ProtectedRoute>
             </SecurityInitializer>
           </AppConfigWrapper>
