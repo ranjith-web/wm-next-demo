@@ -1,0 +1,1 @@
+window.__RUNTIME_CONFIG__ = {"NEXT_PUBLIC_SERVER_PATH":"http://localhost:4444/run-sq04p1xjmd/React_web_two_master"};
